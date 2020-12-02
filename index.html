@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://vk.com/js/api/openapi.js?168" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="dist/notifications.css">
+    <script src="dist/notifications.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <title>Vk RSA</title>
+</head>
+
+<body>
+    <div class="loader-wrapper">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <div class="auth-container">
+        <div class="center-wrapper">
+            <!-- <div class="main-center-elements"> -->
+            <div class="form-token">
+                <div class="input-group mb-3">
+                    <input id="token-input" type="text" class="form-control"
+                        placeholder="Введите токен с возможностью messages" aria-label="Recipient's username"
+                        aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button id="authbtn" class="btn btn-primary" type="button"
+                            id="button-addon2">Авторизоваться</button>
+                    </div>
+                </div>
+            </div>
+            <div class="underform"><span class="underform-text"><a href="https://vkhost.github.io/"
+                        target="_blank">Получить токен</a> (Выберите Kate Mobile)</span></div>
+            <!-- </div> -->
+
+        </div>
+    </div>
+    <div class="main-container">
+        <div class="main-body">
+            <div class="navbar">
+                <a href="https://vk.com" class="user-block-link" target="_blank">
+                    <div class="user-info-block">
+                        <div class="ava-wrap"></div>
+                        <div class="user-info">
+                            <div class="nameblock">Lorem Ipsum</div>
+                            <div class="idblock">@id228</div>
+                        </div>
+                    </div>
+                </a>
+                <button type="button" class="btn btn-primary" id="exitbtn">Выйти</button>
+            </div>
+            <div class="chat-container">
+                <div class="chat-block">
+                    <form id="getuserform">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">@</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Введите id пользователя для получения диалога" aria-label="id"
+                                aria-describedby="basic-addon1" id="vkidinput">
+                            <div class="input-group-append w-18">
+                                <button class="btn btn-outline-success w-100" type="submit" id="friendsearchbtn">Поиск</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="profile">
+                        <div class="chatter-img-wrap">
+                        </div>
+                        <div class="chatter-info">
+                            <div class="name-wrap">
+                                <a href="https://vk.com" class="name">Lorem Ipsum</a>
+                            </div>
+                            <div class="lastseen">
+                                last seen at...
+                            </div>
+                        </div>
+                    </div>
+                    <div class="messages">
+                        <span class="emptyhistorymessage">История сообщений пуста</span>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Напишите сообщение…" aria-label="id"
+                            aria-describedby="basic-addon1">
+                        <div class="input-group-append w-18">
+                            <button class="btn btn-primary w-100" type="button" id="button-addon2" disabled>Отправить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="notify.js"></script>
+    <script src="auth.js"></script>
+    <script src="gethistory.js"></script>
+    <script src="messages.js"></script>
+</body>
+
+</html>
