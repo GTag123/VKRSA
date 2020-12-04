@@ -133,6 +133,8 @@ body {
 .name:hover {
     text-decoration: none;
 }
-.emptyhistorymessage {
-    display: none;
+.messages {
+    padding: 10px;
+    overflow-y: scroll;
+    height: 30%;
 }

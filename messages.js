@@ -53,8 +53,11 @@ function getUser (e) {
                 console.log(rjson);
                 console.log();
 
+                let msgblock = document.querySelector(".messages");
+
                 // сброс
-                document.querySelector(".emptyhistorymessage").style.display = "none";
+                msgblock.innerHTML = "";
+
 
                 // оформляем поле пользователя
                 let lastimg = document.querySelector(".chatter-img");
@@ -75,8 +78,7 @@ function getUser (e) {
 
                 if (!rjson.response[0].online) {
                     let lastseen = new Date(rjson.response[0].last_seen.time * 1000);
-                    console.log(lastseen.getUTCDay());
-                    document.querySelector(".lastseen").innerText = `Last seen: ${lastseen.getHours()}:${lastseen.getMinutes() + 1} ${lastseen.getDate()}.${lastseen.getMonth()}.${lastseen.getFullYear()}`;
+                    document.querySelector(".lastseen").innerText = `Last seen: ${lastseen.getHours()}:${lastseen.getMinutes()} ${lastseen.getDate()}.${lastseen.getMonth() + 1}.${lastseen.getFullYear()}`;
                 }
                 else {
                     document.querySelector(".lastseen").innerText = `online(${devices[rjson.response[0].last_seen.platform - 1]})`
@@ -85,13 +87,18 @@ function getUser (e) {
                 // оформляем чат
                 getHistory(rjson.response[0].id).then( history => {
                     console.log(history);
+            
+
                     if (history == -1) {
-                        document.querySelector(".emptyhistorymessage").style.display = "inline";
+                        let emptymsg = document.createElement("span");
+                        emptymsg.classList.add('emptyhistorymessage');
+                        emptymsg.innerText = "История сообщений пуста";
+                        msgblock.appendChild(emptymsg);
+                        return;
                     } else if (!history) {
                         errorPush({message: "Ошибка при получении истории сообщений"});
+                        return;
                     }
-                    
-                    let msgblock = document.querySelector(".messages");
 
                     history.forEach(element => {
                         let node = document.createElement("div");
@@ -104,17 +111,22 @@ function getUser (e) {
 
                         
                             
-                        msgtimespan.innerText =  `${msgtime.getDate()}.${msgtime.getMonth()}.${msgtime.getFullYear()} ${msgtime.getHours()}:${msgtime.getMinutes() + 1} (`;
-                        from_id.innerText = element[1];
+                        msgtimespan.innerText =  `${msgtime.getDate()}.${msgtime.getMonth()}.${msgtime.getFullYear()} at ${msgtime.getHours()}:${msgtime.getMinutes() + 1} (`;
+                        from_id.innerText = element[1] == rjson.response[0].id ? rjson.response[0].first_name + " " + rjson.response[0].last_name[0] + "." : 
+                                            localStorage.getItem("first_name") + " " + localStorage.getItem("last_name")[0] + ".";
                         from_id.href = "https://vk.com/id" + element[1];
-                        textspan.innerText = "): " + element[3];
+                        if (element[3] == "") {
+                            textspan.innerHTML = "): <i style='color: #cccccc;'>no text</i>";
+                        } else {
+                            textspan.innerText = "): " + element[3];
+                        }
 
                         node.appendChild(msgtimespan);
                         node.appendChild(from_id);
                         node.appendChild(textspan);
                         msgblock.appendChild(node);
                     });
-
+                    
                 });
                 
                 

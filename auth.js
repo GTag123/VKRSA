@@ -101,6 +101,9 @@ function afterAuth(token) {
             successPush({message: "Данные загружены"});
             mainbody.style.display = "block";
 
+            localStorage.setItem("first_name", data.response[0].first_name);
+            localStorage.setItem("last_name", data.response[0].last_name);
+
         } else {
             warnPush({message: "Ошибка vk api при получаении информации об аккаунте"});
             console.log(data);

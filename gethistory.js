@@ -1,7 +1,7 @@
 
 window.getHistory = function (id) {
 
-    return fetch(`${api_url}messages.getHistory?user_id=${id}&count=30&access_token=${localStorage.getItem("vktoken")}&v=${v}`, {
+    return fetch(`${api_url}messages.getHistory?user_id=${id}&count=50&access_token=${localStorage.getItem("vktoken")}&v=${v}`, {
         headers: {
             "X-Requested-With": "XMLHttpRequest"
         }
